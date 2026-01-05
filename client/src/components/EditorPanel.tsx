@@ -110,7 +110,7 @@ const EditorPanel = ({selectedElement, onUpdate, onClose}: EditorPanelProps) => 
                         value={values.styles.color} 
                         onChange={(e)=>handleStyleChange('color', e.target.value)}  
                         className='w-6 h-6  cursor-pointer'/>
-                        <span className='text-xs text-gray-600 truncate'>{values.styles.backgroundColor}</span>
+                        <span className='text-xs text-gray-600 truncate'>{values.styles.color}</span>
                     </div>
                 </div>
             </div>
