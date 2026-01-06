@@ -39,9 +39,15 @@ const ProjectPreview = forwardRef<ProjectPreviewRef, ProjectPreviewProps>(({proj
 
       //Remove injected style + script from the document 
       const previewStyle = doc.getElementById('ai-preview-style');
-      if(previewStyle) return previewStyle.remove();
+      if(previewStyle)  previewStyle.remove();
 
       const previewScript = doc.getElementById('ai-preview-script');
+      if (previewScript) previewScript.remove();
+
+      //Serialize clean HTML
+      const html = doc.documentElement.outerHTML;
+      return html;
+      
 
     }
   }))
