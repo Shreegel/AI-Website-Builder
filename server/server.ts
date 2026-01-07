@@ -7,12 +7,12 @@ const app = express();
 const port = 3000;
 
 const corsOptions = {
-    origin: [],
+    origin: process.env.TRUSTED_ORIGINS?.split(',') || [],
     credential: true,
 }
-//4:13
 
-app.use(cors())
+
+app.use(cors(corsOptions))
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Server is Live!');
@@ -21,3 +21,5 @@ app.get('/', (req: Request, res: Response) => {
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
+
+//4:30
