@@ -1,0 +1,21 @@
+frontend
+- tsx 
+-better auth ui
+--shadcn/ui
+--sonner
+
+backend
+- node.js (great stack)
+- neon
+- prisma
+- better auth
+- npm install openai
+
+building API for website 
+- controllers
+--update 
+---conversation(userid-> converstion-> credits will decrement by 5)
+
+openrouter.ai
+-create api key
+-model: Z.AI: GLM 4.5 Air (free)
