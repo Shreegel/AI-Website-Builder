@@ -3,6 +3,7 @@ frontend
 -better auth ui
 --shadcn/ui
 --sonner
+-npm install axios
 
 backend
 - node.js (great stack)
