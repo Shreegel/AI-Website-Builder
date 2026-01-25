@@ -7,8 +7,10 @@ import Footer from "../components/Footer";
 import api from "@/configs/axios";
 import { coreSchema } from "better-auth";
 import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
 
 const MyProjects = ()=>{
+    const {data: session, isPending} = authClient.useSession(); 
     const [loading, setLoading]= useState(true);
     const [projects, setProjects] = useState<Project[]>([])
     const navigate = useNavigate();
@@ -25,12 +27,27 @@ const MyProjects = ()=>{
     }
 
     const deleteProject = async (projectId: string) =>{
-
+        try {
+            const confirm = window.confirm('Are you sure you want to delete this project?')
+            if(!confirm) return;
+            const {data}= await api.delete(`/api/project/${projectId}`);
+            toast.success(data.message)
+            fetchProjects()
+        } catch (error: any) {
+            console.log(error);
+            toast.error(error?.response?.data?.message || error.message);
+        }
     }
 
     useEffect(()=>{
-        fetchProjects();
-    },[])
+        if(session?.user && !isPending){
+            fetchProjects();
+        }
+        else if(!isPending && !session?.user){
+            navigate('/');
+            toast('Please login to view your projects.');
+        }
+    },[session?.user])
 
     return(
         <>
@@ -104,4 +121,3 @@ const MyProjects = ()=>{
 
 export default MyProjects
 
-7:48
